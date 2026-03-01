@@ -3,12 +3,7 @@
 namespace Http\Controllers;
 
 use Core\Auth;
-use Core\Config;
-use Core\Database;
 use Core\Response;
-use Models\Users;
-use Models\Habits;
-
 
 class UserController extends \Core\Controller
 {
@@ -20,11 +15,8 @@ class UserController extends \Core\Controller
          abort(Response::UNAUTHORIZED);
       };
 
-      $db = new Database(config: Config::database());
-      $pdo = $db->connect();
-
-      $usersModel = new Users(connection: $pdo);
-      $habitsModel = new Habits(connection: $pdo);
+      $usersModel = $this->usersModel();
+      $habitsModel = $this->habitsModel();
 
       $user = $usersModel->findUserByEmail(localEmail: Auth::email());
       $habits = $habitsModel->findByUserId(userId: Auth::id());
@@ -46,10 +38,8 @@ class UserController extends \Core\Controller
    {
       $userId = (int) $userId;
 
-      $db = new Database(config: Config::database());
-      $pdo = $db->connect();
+      $usersModel = $this->usersModel();
 
-      $usersModel = new Users(connection: $pdo);
       $user = $usersModel->findUserById($userId);
 
       if (! $user) {

@@ -4,9 +4,6 @@ namespace Http\Controllers;
 
 use Core\Auth;
 use Core\Response;
-use Core\Config;
-use Core\Database;
-use Models\Habits;
 use Http\Requests\CreateHabit;
 use Http\Requests\EditHabit;
 use Core\Sanitize;
@@ -17,11 +14,7 @@ class HabitController extends \Core\Controller
    // render habit page view
    public function index()
    {
-      $db = new Database(config: Config::database());
-      $pdo = $db->connect();
-
-      $habitsModel = new Habits(connection: $pdo);
-      $habits = $habitsModel->read();
+      $habits = $this->habitsModel()->read();
 
       $this->renderView(
          path: 'habit/index.view.php',
@@ -42,10 +35,7 @@ class HabitController extends \Core\Controller
          abort(status: Response::METHOD_NOT_ALLOWED);
       }
 
-      $db = new Database(config: Config::database());
-      $pdo = $db->connect();
-
-      $habitsModel = new Habits(connection: $pdo);
+      $habitsModel = $this->habitsModel();
 
       $formValidatinModel = new CreateHabit(habit: $habitsModel);
 
@@ -101,10 +91,8 @@ class HabitController extends \Core\Controller
          abort(status: Response::METHOD_NOT_ALLOWED);
       }
 
-      $db = new Database(config: Config::Database());
-      $pdo = $db->connect();
+      $habitsModel = $this->habitsModel();
 
-      $habitsModel = new Habits(connection: $pdo);
       $destroySpecificHabit = $habitsModel->forceDelete(habitId: $habitId);
 
       if ($destroySpecificHabit) {
@@ -126,10 +114,8 @@ class HabitController extends \Core\Controller
          abort(status: Response::METHOD_NOT_ALLOWED);
       }
 
-      $db = new Database(config: Config::Database());
-      $pdo = $db->connect();
+      $habitsModel = $this->habitsModel();
 
-      $habitsModel = new Habits(connection: $pdo);
       $softDeleteHabit = $habitsModel->softDelete(habitId: $habitId);
 
       if ($softDeleteHabit) {
@@ -145,10 +131,8 @@ class HabitController extends \Core\Controller
    // show archived habits [possibly to restore some of the habits]
    public function archived()
    {
-      $db = new Database(config: Config::database());
-      $pdo = $db->connect();
+      $habitsModel = $this->habitsModel();
 
-      $habitsModel = new Habits(connection: $pdo);
       $habits = $habitsModel->findArchivedUserId(userId: Auth::id());
 
       $this->renderView(
@@ -171,10 +155,8 @@ class HabitController extends \Core\Controller
          abort(status: Response::METHOD_NOT_ALLOWED);
       }
 
-      $db = new Database(config: Config::Database());
-      $pdo = $db->connect();
+      $habitsModel = $this->habitsModel();
 
-      $habitsModel = new Habits(connection: $pdo);
       $restoreHabit = $habitsModel->restore(habitId: $habitId);
 
       if ($restoreHabit) {
@@ -196,10 +178,8 @@ class HabitController extends \Core\Controller
          abort(status: Response::METHOD_NOT_ALLOWED);
       }
 
-      $db = new Database(config: Config::database());
-      $pdo = $db->connect();
+      $habitsModel = $this->habitsModel();
 
-      $habitsModel = new Habits(connection: $pdo);
       $habit = $habitsModel->readById(habitId: $habitId);
       if (!$habit) {
          abort(status: Response::NOT_FOUND); // habit does not exist
@@ -264,10 +244,7 @@ class HabitController extends \Core\Controller
          abort(status: Response::UNAUTHORIZED);
       }
 
-      $db = new Database(config: Config::Database());
-      $pdo = $db->connect();
-
-      $habitsModel = new Habits(connection: $pdo);
+      $habitsModel = $this->habitsModel();
       $habit = $habitsModel->readById(habitId: $habitId);
 
       if (!$habit) {

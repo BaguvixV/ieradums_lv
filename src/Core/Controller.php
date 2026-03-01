@@ -2,9 +2,38 @@
 
 namespace Core;
 
+use PDO;
+use Models\Users;
+use Models\Habits;
 
 class Controller
 {
+   private ?PDO $pdo = null;
+   private ?Users $usersModel = null;
+   private ?Habits $habitsModel = null;
+
+   public function usersModel(): Users
+   {
+      if ($this->usersModel === null) {
+         $database = new Database(config: Config::database());
+         $this->pdo = $database->connect();
+         $this->usersModel = new Users(connection: $this->pdo);
+      }
+
+      return $this->usersModel;
+   }
+
+   public function habitsModel(): Habits
+   {
+      if ($this->habitsModel === null) {
+         $database = new Database(config: Config::database());
+         $this->pdo = $database->connect();
+         $this->habitsModel = new Habits(connection: $this->pdo);
+      }
+
+      return $this->habitsModel;
+   }
+
    /**
     * Render a PHP view with optional data
     *
