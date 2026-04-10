@@ -1,10 +1,13 @@
 # vlad
 
 ## 📝 Description
-This is a small, almost-daily pet-project (~1.5 hours per session) created to practice, experiment, and showcase my software development experience.
+
+A small pet-project (~1.5h session) for practicing and showcasing software development decisions.
 
 The project is not intended to be a polished product.
 It exists to demonstrate learning, decision-making, and clean engineering rather than feature richness or visual design.
+
+> Important note: If commits are sparse then I'm likely focused on another project.
 
 ---
 
@@ -12,17 +15,19 @@ It exists to demonstrate learning, decision-making, and clean engineering rather
 
 This project follows a strict rule:
 
-> **Every feature must exist to support learning, not novelty or polish.**
+> **Every feature must serve learning, not novelty or polish.**
 
 ### Hard Scope Lock
 
 #### Allowed features:
+
 - Authentication (register/login)
 - CRUD habits
 - Daily checkmark
 - Weekly and monthly summary
 
 #### Forbidden features:
+
 - Dark mode
 - Animations
 - Notifications
@@ -32,23 +37,22 @@ This project follows a strict rule:
 
 > If it is not teaching a **core skills**, then it's not necessary.
 
+## 🛠️ Tech Stack (`v1-structured` branch)
 
-## 🛠️ Tech Stack
-- HTML
-- CSS
+- HTML / CSS (SCSS)
 - PHP (OOP, MVC)
-- PDO
-- MySQL
-- Git
+- MySQL (PDO)
+- Git (GitHub)
 
-## 🚀 Project Goals
-- Practice structured PHP development using MVC
-- Work with databases via PDO
-- Apply OOP principles in real use cases
-- Maintain clean commit history and documentation
+## 🚀 Roadmap
 
+- v1 Structured PHP with MVC, PDO, OOP, clean commits
+- v2 Basic CSS styling with SCSS
+- v3 Improved styling with Tailwind CSS
+- v4 Laravel integration
 
 ## 🏗️ Structure
+
 ```
 project/
 ├── public/          - web root
@@ -57,21 +61,35 @@ project/
 
 ## 🧩 Usage
 
-Clone the repository and use Docker Compose to build and run containers:
+Clone the repository (with Git) and use Docker Compose to build and run containers:
 
 ```bash
-docker-compose build
-docker-compose up
+docker compose up --build
 ```
 
-> Note: To exit, press Ctrl+C or run in detached mode
+- Run detached
+
 ```bash
-docker-compose up -d
+docker compose up -d
 ```
 
-After running Docker, you should be able to access:
-- https://localhost:8881
-- https://localhost:8880
+- Or run specific profile (where in this example php84 is created profile name):
+
+```bash
+docker compose --profile php84 up
+```
+
+> After running Docker, you should be able to access:
+>
+> - https://localhost:8881
+> - https://localhost:8880
+
+- To stop Docker containers run:
+
+```bash
+Ctrl+C
+```
 
 ## ⏳ Status
+
 🚧 In active development

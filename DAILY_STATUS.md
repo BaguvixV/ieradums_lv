@@ -1,50 +1,97 @@
-# 🧱 Daily Engineering Log
+#### <r> TODOS / later
 
-> **Purpose:** Track consistency, thinking process, and incremental progress.  
-> Sessions: ~1-2h unless stated otherwise.
-
-## 🎯 Why this exists
-
-- Removes guilt on "imperfect" days
-- Allows study-only days without feature pressure
-- Enforces daily commit (habit consistency)
-- Keeps a clean, chronological history
-- Captures _why_ not just _what_
+- <o> Make admin panel access invisible from regular users
+- <o> Enhance migration SQL files
 
 ---
 
-## 📅 05/04/26
+#### <n> Next Up Tasks (Planned or/and In Progress)
 
-### COMMIT
+- [] Enhance both (README.md and DAILY_STATUS.md) documentations
 
-```bash
-git commit -m "refactor: Improve code formatting and editor setup
+- [ ] Visualize Git diagram before and after merge fix
+- [ ] Merge last two commits from `main` branch to all other branches
+- [ ] From now on continue working on `v1-structure` branch
+
+- [ ] Display only habits with checkboxes on dashboard -- `v1-structure`
+
+- [ ] Improve project styling with basic CSS (SCSS) -- `v2-styling`
+  - [ ] Style homepage
+  - [ ] Style login and register pages
+  - [ ] Style about page
+  - [ ] Style admin page
+  - [ ] Style archive page
+  - [ ] Style create habit page
+
+---
+
+### <d> 2026/03/16 -- `v1-structure` -- <o> planned
+
+- #### <g> doc: improve documentations
+
+- #### <g> feat: display habits with checkboxes on dashboard
+
+- #### <g> perf: lazy loading for habits and user model
+
+---
+
+### <d> 2026-04-11 -- `v1-structure`
+
+#### <t> 0000000 · wip/doc: Improve documentations
+
+- Display habits with checkboxes on dashboard
+
+---
+
+### <d> 2026-04-10 -- `main`
+
+#### <t> 0000000 · docs: Improve README and daily status; replace emojis with colors; prep for v1-structure branch
+
+> <b><r> Note: </r></b> From now on merge inside `main` branch only when secondary branch is completed
+
+---
+
+### <d> 2026-04-05 -- `main`
+
+#### <t> 1a65a5c · refactor: Improve code formatting and editor setup
 
 - switch from PHPStorm back to VSCode
 - standardize indentation to 4 spaces
 - enable trailing whitespace visibility
-- fix minor typos"
-```
-
-## 📅 27/02/26 - Planned
-
-### 2nd COMMIT
-
-```bash
-feat: Display only habits with checkboxes on dashboard
-```
-
-### 1st COMMIT
-
-```bash
-pref: Use lazy loading for habits and user model
-```
+- fix minor typos
 
 ---
 
-## 📅 26/02/26 🛠️
+### <d> 2026-03-06 -- `v1-structure`
 
-### COMMIT
+#### <t> 084e10c · feat: Separate admin panel access control from standard user permission
+
+- Introduce role-based access control (RBAC) distinguishing admin vs user roles
+- Restrict admin panel routes to users with role admin privilege
+- Redirect unauthorized users to 403 forbidden page on access attempt
+- Also remove [gitignore] Jetbrain's IDEs .idea folder
+
+---
+
+### <d> 2026-03-01 -- `v1-structure`
+
+#### <t> 4675f57 · refactor: Merge LoginController and RegisterController into AuthController
+
+- Combined authentication logic into a single AuthController to simplify structure and
+  keep related actions in one place. Removed old LoginController and RegisterController and
+  updated routes accordingly.
+
+---
+
+### <d> 2026-02-27 -- `v1-structure`
+
+#### <t> 76db2bc · refactor: Introduce lazy loading for Habits and Users models
+
+---
+
+### <d> 2026/02/26 -- `v1-structure`
+
+#### COMMIT
 
 ```bash
 refactor: Auth abstraction, controller cleanup, user/habit setup improvement, and DB defaults improvement
@@ -179,7 +226,7 @@ refactor: Rename Habit model file name as Habits & Remove redundant habits and u
 - Because they are not used and needed at least for now --> `date` values are automatically created so as unique `id` values,
   `isActive` are set by default on creation and even on edit those values are defined inside sql queries WHERE and SET conditions,
   and `completion` are set 0 by default and later will be used similar as `isActive` inside sql queries WHERE and SET conditions,
-  ONLY `cateogry`, `title` and `description` are set by setters and get by betters
+  ONLY `category`, `title` and `description` are set by setters and get by betters
 
 ### WHAT
 
@@ -248,7 +295,7 @@ feat: Complete habit CRUD with validation, soft-delete, restore, and archived vi
 - Moved Views\partials code into Views\pages to make easier to read code for now
 - Created navigation link named archived with archived habits and ability to restore or force-delete habits
 - Changed Habit SQL column name status to completion
-- Created Core\Validator with regex variables and error method
+- Created Core\Validator with regex varaibles and error method
 ```
 
 ## 📅 17/01/26 (Focus: 1h 15min)
@@ -266,13 +313,13 @@ wip/feat: Enhance router and extend habit CRUD with soft/force delete, restore a
 ## 📅 14/01/2026 (Focus: 2h 4min)
 
 ```md
-wip/feat: Router enchantment
+wip/feat: Router enhancement
 ```
 
 ## 📅 14/01/2026 (Focus: 1h 10min)
 
 ```md
-refactor(views): Simplify folder and file structure & restore Views naming
+refactor(views): Simplify folder and fike structure & restore Views naming
 
 - Inline main template content into page views
 - Renamed templates back to Views
@@ -294,7 +341,7 @@ refactor(views): Simplify folder and file structure & restore Views naming
 ```md
 - 10/01 🛠️ 11/01 ✅ Implement user login flow
 - 10/01 ✅ Add logout feature for users who are logged-in
-- 10/01 🛠️ 11/01 ✅ Extend Requests\AuthFormValidation.php and Requests\LoginFrom with login-specific validation rules
+- 10/01 🛠️ 11/01 ✅ Extend Requests\AuthFormValidation.php and Requests\LoginFrom with login-specify validation rules
 - 11/01 ✅ Add 'Create habit' navigation link visible for users who are logged-in
 - 10/01 🚨 Caught myself on thinking about wrong placement for checking functions/methods inside RegisterForm and LoginForm
 ```
@@ -303,7 +350,7 @@ refactor(views): Simplify folder and file structure & restore Views naming
 
 ```md
 - ✅ Implement user login flow
-- ✅ Extend Requests\AuthFormValidation.php and Requests\LoginFrom with login-specific validation rules
+- ✅ Extend Requests\AuthFormValidation.php and Requests\LoginFrom with login-specify validation rules
 - ✅ Add 'Create habit' navigation link visible for users who are logged-in
 ```
 
@@ -312,7 +359,7 @@ refactor(views): Simplify folder and file structure & restore Views naming
 ```md
 - 🛠️ Implement user login flow
 - ✅ Add logout feature for users who are logged-in
-- 🛠️ Extend Requests\AuthFormValidation.php and Requests\LoginFrom with login-specific validation rules
+- 🛠️ Extend Requests\AuthFormValidation.php and Requests\LoginFrom with login-specify validation rules
 - 🚨 Caught myself on thinking about wrong placement for checking functions/methods inside RegisterForm and LoginForm
 ```
 
@@ -452,3 +499,30 @@ git commit -m "feat: Initial project setup, improve view rendering, and type hin
 > Added renderView() function with property type hints and detailed comments
 > Enabled robust routing for main and subpages"
 ```
+
+---
+
+---
+
+---
+
+<style>
+d { color: #1c5b94 }
+t { color: teal; }
+g { color: green }
+r { color: red }
+n { color: mediumpurple }
+o { color: darkorange }
+</style>
+
+<d> custom blue <b>[#1c5b94]</b> color example
+
+<t> teal color example
+
+<g> green color example
+
+<r> red color example
+
+<n> mediumpurple color example
+
+<o> darkorange color example
